@@ -1,0 +1,50 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27018
+  redis:
+    host: localhost
+    port: 6379
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+
+# actuator相关配置, 用于springboot admin服务监控
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        # 暴露所有监控节点
+        include: "*"
+      path-mapping:
+        health: /ping
+      base-path: /foo
+  endpoint:
+    health:
+      show-details: ALWAYS
+  # 使用独立的119端口而不是提供业务的端口作为服务监测的端口, 这样可以方便的进行防火墙配置, 避免外网访问
+  server:
+    port: 119
+
+logging:
+  level:
+    com.wsn.powerstrip: INFO
+    org.springframework.web: INFO
+  config: classpath:log4j2-prod.xml
+  # 以下配置是给监控服务springboot admin用的, 如果不启用, springboot admin会不显示实时log窗口
+  file:
+    # 以下的配置指示了springboot admin需要实时显式的log文件位置, log相关的配置在log4j2-prod.xml中
+    name: /etc/log/info.log
+
+analysisService:
+  url: http://localhost:9001
+
+jwt:
+  secret: scuiot
+  expiration: 1800
+

@@ -1,0 +1,32 @@
+spring:
+  data:
+    mongodb:
+      host: 121.4.39.153
+      port: 27018
+  redis:
+    host: 121.4.39.153
+    port: 6379
+  # 本地开发时不进行服务注册
+  cloud:
+    consul:
+      enabled: false
+
+logging:
+  level:
+    com.wsn.powerstrip: DEBUG
+    org.springframework.web: INFO
+    org.apache.pulsar: warn
+    com.wsn.powerstrip.iotPlatform.feign: INFO
+  config: classpath:log4j2-dev.xml
+
+# 预测功能
+analysisService:
+  #  url: http://47.113.82.29:9001
+  url: http://localhost:9001
+
+#debug: true # 输出更多调试内容
+
+jwt:
+  secret: scuiot
+  expiration: 18000
+

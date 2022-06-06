@@ -1,0 +1,34 @@
+### 新增组织
+POST http://{{host}}/api/organization
+Content-Type: application/json
+
+{
+  "name": "四川大学"
+}
+
+### 删除组织
+DELETE http://{{host}}/api/organization?organizationId=5f086b908776b82df0fb6848
+
+### 修改组织名称
+PUT http://{{host}}/api/organization?organizationId=5f086b908776b82df0fb6848&newName=北京大学
+
+### 获得所有组织的列表
+GET http://{{host}}/api/organization/list
+
+### 获得组织人数
+GET http://{{host}}/api/organization/users?organizationId=5f086548711ed90904d86727&justNumber=true
+
+### 获得组织所有用户列表
+GET http://{{host}}/api/organization/users?organizationId=5f086548711ed90904d86727&page=1
+
+### 模糊查询组织中用户
+GET http://{{host}}/api/organization/users?organizationId=5f086548711ed90904d86727&keyword=王&page=1
+
+### 获得所有组织的summary
+GET http://{{host}}/api/organization/summary
+
+### 获得特定组织的summary
+GET http://{{host}}/api/organization/summary?organizationId=5f086548711ed90904d86727
+
+### 获得组织实体
+GET http://{{host}}/api/organization?organizationId=5f086548711ed90904d86727

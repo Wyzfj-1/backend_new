@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.wsn</groupId>
+    <artifactId>powerstrip</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>13</java.version>
+        <!--以下版本号必须与springboot匹配, https://spring.io/projects/spring-cloud-->
+        <spring-cloud.version>2020.0.2</spring-cloud.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!--新短信功能所需依赖-->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.3</version>
+        </dependency>
+
+
+
+        <!--Consul-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+        <!--暴露服务监控接口-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <!--当前代码使用更快的log4j2作为log,故排除默认的logback-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--JMX相关(用于服务监控)-->
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+        </dependency>
+        <!--feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign.form</groupId>
+            <artifactId>feign-form-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--mongodb-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <!--当前代码使用更快的log4j2作为log,故排除默认的logback-->
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <!--spring security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--增加@Valid验证功能-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/j  -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <!--jjwt的依赖-->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <!-- 邮件模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <!-- 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- 引入redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--cache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!-- json序列化组件 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+        <!--web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!--当前代码使用更快的log4j2作为log,故排除默认的logback-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--使用更快的log4j2做日志,而不使用默认的logback-->
+        <dependency> <!-- 引入log4j2依赖 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <!--启用异步日志-->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.7.1.RELEASE</version>
+        </dependency>
+        <!--thymeleaf 用于生成漂亮的用户邮件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--涂鸦加密算法-->
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-crypto -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-crypto</artifactId>
+            <version>5.4.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mqtt -->
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mqtt</artifactId>
+            <version>5.4.4</version>
+        </dependency>
+        <dependency>
+            <groupId> org.springframework.boot </groupId>
+            <artifactId> spring-boot-configuration-processor </artifactId>
+            <optional> true </optional>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <!--腾讯云短信-->
+        <dependency>
+            <groupId>com.github.qcloudsms</groupId>
+            <artifactId>qcloudsms</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.wsn.powerstrip.PowerStripApplication</mainClass>
+                    <!--fork :如果没有这个选项。devtool不会起作用-->
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="src/docker"
+                                      file="target/${project.artifactId}-${project.version}.${project.packaging}"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <configuration>
+                    <skip>true</skip>
+                    <!--<encoding>utf-8</encoding>-->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

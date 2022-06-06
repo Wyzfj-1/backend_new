@@ -1,0 +1,57 @@
+### 用户注册前获取邀请码
+GET http://{{host}}/api/user/invite?email=825759434@qq.com
+
+
+### 用户注册:正确示例:
+POST http://{{host}}/api/user/register?invitationCode=今晚吃火锅去
+Content-Type: application/json
+
+{
+  "nickname": "GuestTest",
+  "email": "guest@easecurelab.com",
+  "password": "guest1234",
+  "phone": "123456789",
+  "organizationId": "5f086548711ed90904d86727",
+  "role": "user"
+}
+### 用户登录, 登陆后获得token
+POST http://{{host}}/api/user/login
+Content-Type: application/json
+
+{
+  "email": "guest@easecurelab.com",
+  "password": "abcd1234"
+}
+
+
+### 使用上述token可查看当前用户
+GET http://{{host}}/api/user/profile?userEmail=782864998@qq.com
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3ODI4NjQ5OThAcXEuY29tIiwiaWF0IjoxNjA5OTAyMTE0LCJleHAiOjE2MDk5MjAxMTR9.s7mw-2YQdOzb-9ISvTtCyb9mkF45LutGwN6gTHpE0K82yAjkF4VdrH1SwY2hlhwQrZwdQLqa2euWlqaVESwNdA
+
+### 使用上述token可修改当前用户密码,其中的passwors参数为新密码
+PUT http://{{host}}/api/user/password?verificationCode=今晚吃火锅去
+Authorization:eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3ODI4NjQ5OThAcXEuY29tIiwiaWF0IjoxNjE0MDY5MTc0LCJleHAiOjE2MTQwODcxNzR9.WaCJXT2ZE1lF_8s2yZ0iHoGBHvOcw966-4q3ciSU-P8m86ugR3wKJNDf77HC4Qgy0IZV-yf21t40bFwpBv6FYg
+Content-Type: application/json
+
+{
+  "email": "782864998@qq.com",
+  "password": "abcd1234"
+}
+
+### 如果当前用户为管理员,则可重置其他人的密码为abcd1234. 注意:重置其他人密码前管理员需要重新进行身份验证,以下示例中url中的userEmail是希望被重置密码的用户的email,请求体中的内容为当前管理员的用户名和密码
+PUT http://{{host}}/api/user/password/reset?userEmail=guest@easecurelab.com
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3ODI4NjQ5OThAcXEuY29tIiwiaWF0IjoxNjE0NzM3NTgxLCJleHAiOjE2MTQ3MzkzODF9.UUCILqP93zRH30A4xcbVQiCxOPO_WhgzhVRmDHNrzklV3HBozKLmUd-r3UE_XdAD_7ZcZCXcik2pJoBVzKtWdg
+Content-Type: application/json
+
+{
+  "email": "782864998@qq.com",
+  "password": "abcd1234"
+}
+
+### 如果当前用户为管理员，则可删除本组织内用户
+DELETE http://{{host}}/api/user/delete?userId=6034c925cebabd7be993f9cc
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3ODI4NjQ5OThAcXEuY29tIiwiaWF0IjoxNjE0MDcxMzcxLCJleHAiOjE2MTQwODkzNzF9.nblHYHyixjmCywdm_uiqAlRX1AQ2JXuK1RIxSo9zmMlSWwxcsnx3vHQSOCewZ2aS3Yv2BUyca9S2dyu3dpSv5g
+
+### 用户登出
+POST http://{{host}}/api/user/logout
+

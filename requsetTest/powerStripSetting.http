@@ -1,0 +1,63 @@
+### 新建插座配置
+POST http://{{host}}/api/powerStrip/setting
+Content-Type: application/json
+
+{
+  "name": "测试配置时区测试",
+  "organizationId": "5f086548711ed90904d86727",
+  "settings": [
+    {
+      "onTime": "09:00:00",
+      "offTime": "17:00:00",
+      "daysOfWeek": ["MONDAY", "TUESDAY"]
+    }
+  ]
+}
+
+### 新建插座配置并附着到指定插座上
+POST http://{{host}}/api/powerStrip/setting?powerStripId=5eed7f8e4f1c0960ae2d722e
+Content-Type: application/json
+
+{
+  "name": "测试附着到插座上",
+  "organizationId": "5f086548711ed90904d86727",
+  "settings": [
+    {
+      "onTime": "09:00:00",
+      "offTime": "17:00:00",
+      "daysOfWeek": ["MONDAY", "TUESDAY"]
+    }
+  ]
+}
+
+### 删除插座上附着的配置
+POST http://{{host}}/api/powerStrip/setting?powerStripId=5eed7f8e4f1c0960ae2d722e
+
+### 将创建好的插座配置附着到指定插座上
+POST http://{{host}}/api/powerStrip/setting?powerStripId=5eed7f8e4f1c0960ae2d722e&powerStripSettingId=5f19b39f340025480f0149e4
+
+### 检查附着操作的结果
+GET http://{{host}}/api/powerStrip?id=5eed7f8e4f1c0960ae2d722e
+
+### 删除插座配置
+DELETE http://{{host}}/api/powerStrip/setting?powerStripSettingId=5f19b3ac340025480f0149e5
+
+### 更新插座配置
+PUT http://{{host}}/api/powerStrip/setting
+Content-Type: application/json
+
+{
+  "id": "5f19b39f340025480f0149e4",
+  "name": "测试更新配置",
+  "organizationId": "5f086548711ed90904d86727",
+  "settings": [
+    {
+      "onTime": "09:00:00",
+      "offTime": "17:00:00",
+      "daysOfWeek": ["MONDAY"]
+    }
+  ]
+}
+
+### 获得组织所有插座配置
+GET http://{{host}}/api/powerStrip/setting?organizationId=5f086548711ed90904d86727

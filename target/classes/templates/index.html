@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/event-source-polyfill/0.0.9/eventsource.min.js"></script>
+</head>
+<body>
+<ul id="list">
+</ul>
+<ul id="list2">
+</ul>
+<script>
+    let source = new EventSource("/api/push/event?userId=1");
+    source.onmessage = function(event) {
+        let item = $("<li></li>").html(event.data);
+        $("#list").append(item);
+    }
+</script>
+</body>
+</html>

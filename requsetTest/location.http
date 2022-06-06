@@ -1,0 +1,35 @@
+### 增加一栋建筑
+POST http://{{host}}/api/location/building
+Content-Type: application/json
+
+{
+  "name": "实验楼"
+}
+
+### 列出所有建筑
+POST http://{{host}}/api/location/building/list
+
+### 增加一个房间
+POST http://{{host}}/api/location/building/room
+Content-Type: application/json
+
+{
+  "buildingId": "5f08861419004e0daa563608",
+  "name": "多媒体教室"
+}
+### 删除建筑
+DELETE http://{{host}}/api/location/building?id=5f08862319004e0daa563609
+
+### 列出所有房间
+POST http://{{host}}/api/location/building/room/list
+
+### 列出一栋楼所有房间
+POST http://{{host}}/api/location/building/room/list?buildingId=5f08862319004e0daa563609
+
+### 列出当前组织内所有房间(大屏使用):
+POST http://{{host}}/api/location/building/room/list?organizationId=5f086548711ed90904d86727
+
+
+###删除房间
+DELETE http://{{host}}/api/location/building/room?id=5f088aeb19004e0daa56360c
+

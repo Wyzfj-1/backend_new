@@ -1,0 +1,90 @@
+swagger:
+  title: SensorController API
+  description: "Control the rate, start and end of sensor data generation!"
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  base-package: com.wsn.nac.publish.controller
+
+# 配置swagger的展示路径
+springdoc:
+  api-docs:
+    # 返回api json的路径
+    path: /api/json
+  swagger-ui:
+    # 返回api ui的路径
+    path: /api
+spring:
+  application:
+    name: powerstrip
+  data:
+    mongodb:
+      authentication-database: admin
+      username: scuiot_root
+      password: scuiot2333
+  redis:
+    password: iDYrbiQjO$T^#79c
+    username: wsn
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+  devtools:
+    restart:
+      enabled: true
+  cloud:
+    consul:
+      discovery:
+        tags: management.context-path=/foo,health.path=/ping
+        enabled: true
+        register: true
+        deregister: true
+        prefer-ip-address: true
+        health-check-path: /test
+        heartbeat:
+          enabled: true
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mail:
+    host: smtp.qq.com
+    username: 782864998@qq.com
+    password: glmabbcfgpthbbae
+    default-encoding: UTF-8
+    port: 465
+    protocol: smtps
+
+server:
+  port: 9000
+  servlet:
+    encoding:
+      charset: UTF-8
+  compression:
+    enabled: true
+#   无需配置mimeTypes, 默认的情况下所有类型都压缩
+
+#物联网平台参数:
+oceanconnect:
+  platformUrl: https://49.4.92.191:8743
+  appId: soJvQmEmysd8HWe0GIMBxODOvsQa
+  secret: Xni09VKOBMMQojUZlODc77EyKk0a
+  callBackUrl: http://121.4.39.153:9000/api/oceanconnect/commandCallback
+
+tuya:
+  url: https://openapi.tuyacn.com
+  client_id: mcpgdada9zi57242r7eu
+  secret: 2ba8344c0c034a1e9936e08c765cbcac
+  sign_method: HMAC-SHA256
+
+mantunsci:
+  url: https://open.snd02.com:443
+  username: scdx01
+  password: scdx888
+  redirectUrl: http://open.snd02.com/demo.jsp
+  appKey: O000006091
+  appSecret: 0AF8C6052C29B68C515D95265854FB66
+  projectCode: P00000012590
+
+# 微信推送接口：
+wechat:
+  url: http://132.232.27.8:8081/epidemic_stat/send

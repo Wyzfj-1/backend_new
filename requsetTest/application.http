@@ -1,0 +1,19 @@
+### 新建电器
+POST http://{{host}}/api/application?powerStripId=5f8d876d2d57274c447ea724
+Content-Type: application/json
+
+{
+  "name": "light",
+  "applicationType": "LIGHT",
+  "applicationState": "NORMAL",
+  "position": {
+    "x": 10,
+    "y": 20
+  }
+}
+
+### 查询电器历史
+GET http://{{host}}/api/application/history?id=5f8e5b28da9bb25482eab91a
+
+### 查询电器实体:
+GET http://{{host}}/api/application?id=5f8e5b28da9bb25482eab91a

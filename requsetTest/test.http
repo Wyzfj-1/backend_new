@@ -1,0 +1,16 @@
+### tuya
+GET http://{{host}}/test
+
+### 储存设备最新数据
+GET http://{{host}}/test/5
+
+### 指定设备开
+GET http://{{host}}/test/6
+
+### 指定设备关
+GET http://{{host}}/test/7
+
+### 删除无效的Consul服务
+PUT http://121.4.39.153:8500/v1/agent/service/deregister/NacApplication-8088
+
+

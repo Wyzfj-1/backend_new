@@ -1,0 +1,88 @@
+###
+### 根据组织id获得该组织拥有的插排
+GET http://{{host}}/api/device/find?organizationId=5f086548711ed90904d86727&type=POWER_STRIP&page=1&limit=5
+### 根据组织id获得该组织拥有的空开
+GET http://{{host}}/api/device/find?organizationId=5f086548711ed90904d86727&type=CIRCUIT_BREAKER&page=1&limit=5
+### 根据Id打开插排
+POST http://{{host}}/api/device/operation?type=POWER_STRIP&id=5eed7f8e4f1c0960ae2d722e&operation=OFF
+### 根据Id操作空开
+POST http://{{host}}/api/device/operation?type=CIRCUIT_BREAKER&id=5fd7497588a18642a0a2a49e&operation=ON
+### 获得插排历史:
+### 获得插座历史记录(最近3小时的)
+GET http://{{host}}/api/device/history?id=5eed7f8e4f1c0960ae2d722e&type=POWER_STRIP&period=hour&times=3
+### 获得传感器历史记录(最近3小时的)
+GET http://{{host}}/api/device/history?id=603f91be6c0b869e6ce59201&type=SENSOR&period=hour&times=3
+
+
+### 更新插座
+POST http://{{host}}/api/device/powerstrip
+Content-Type: application/json
+
+{
+  "id": "5f94edc731e9a73ad04e687b",
+  "name": "基教407-h03",
+  "criticalOnlineTime": "10000"
+}
+
+### 更新空开
+POST http://{{host}}/api/device/circuitbreaker
+Content-Type: application/json
+
+{
+  "id": "6040d04a4421c65678124fb0",
+  "name":"基教405-m08修改",
+  "onlineTime": 3000
+}
+
+### 根据Id打开插座
+POST http://{{host}}/api/powerStrip/operation?id=5eed7f8e4f1c0960ae2d722e&operation=ON
+### 根据Id打开插座
+POST http://{{host}}/api/powerStrip/operation?id=5eed7f8e4f1c0960ae2d722e&operation=OFF
+### mantun插座测试:
+POST http://{{host}}/api/powerStrip/operation?id=5fd749da88a18642a0a2a4a1&operation=OFF
+
+### 获得插座操作结果
+GET http://{{host}}/api/powerStrip/status?deviceId=81bc3c9a-13e8-49d5-9d75-713a9f99dcde
+
+### 获得指定房间所有插座:
+GET http://{{host}}/api/powerStrip/find?organizationId=5f086548711ed90904d86727&roomId=5f0888cf19004e0daa56360b
+
+
+
+### 根据组织id获得该组织拥有的设备
+GET http://{{host}}/api/device/find?organizationId=5f086548711ed90904d86727&type=POWER_STRIP&page=1&limit=5
+
+### 根据插座id获得插座
+GET http://{{host}}/api/powerStrip?id=5f0c068cffdb50ee60288253
+
+### 根据组织id获得该组织拥有的插座数量及状态
+GET http://{{host}}/api/powerStrip/summary?organizationId=5f086548711ed90904d86727
+
+### 获得插座历史记录(最近60分钟的)
+GET http://{{host}}/api/powerStrip/history?id=5eed7f8e4f1c0960ae2d722e&period=minute&times=6
+
+
+### 获得插座历史记录(最近3分钟的)
+GET http://{{host}}/api/powerStrip/history?id=5eed7f8e4f1c0960ae2d722e&period=hour&times=3
+
+### 获得预测数据
+GET http://{{host}}/api/powerStrip/forecast?id=5eed7f8e4f1c0960ae2d722e&period=minute&times=3
+
+### 获得分解数据
+GET http://{{host}}/api/powerStrip/decomposition?id=5f8d876d2d57274c447ea724
+
+### 获得所有插座指定字段
+POST http://{{host}}/api/powerStrip/list
+Content-Type: application/json
+
+[
+  "id",
+  "deviceId"
+]
+
+
+
+
+
+
+
